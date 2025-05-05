@@ -1,0 +1,17 @@
+services:
+  ipv4-cat:
+    image: ipv4-cat
+    container_name: ipv4-cat
+    build: .
+    network_mode: host
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      # Set DEBUG log level to log all connections (noisy).
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
